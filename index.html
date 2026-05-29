@@ -99,56 +99,11 @@
     <section class="section" id="catalog">
       <div class="section-heading">
         <p class="eyebrow" data-i18n="gallery.eyebrow">Gallery</p>
-        <h2 class="gallery-title" data-i18n="gallery.title">Декор,&nbsp;в&nbsp;котором<br>живёт&nbsp;характер.</h2>
-        <p class="section-subtitle" data-i18n="gallery.subtitle">Для интерьера, улицы и сувениров</p>
-      </div>
-      <div class="gallery-search">
-        <label>
-          <span data-i18n="search.label">Поиск по галерее</span>
-          <input type="search" id="gallery-search" data-i18n-placeholder="search.placeholder" placeholder="панно, сталь, поводки, латунь">
-        </label>
-      </div>
-      <div class="filters-wrap" aria-label="Разделы галереи">
-        <div class="filters">
-          <button class="filter is-active" type="button" data-filter="all" data-i18n="filter.all">Все изделия</button>
-          <button class="filter" type="button" data-filter="panels" data-i18n="filter.panels">Панно</button>
-          <button class="filter" type="button" data-filter="brackets" data-i18n="filter.brackets">Кронштейны</button>
-          <button class="filter" type="button" data-filter="hangers" data-i18n="filter.hangers">Вешалки</button>
-          <div class="filter-group">
-            <button class="filter filter-parent" type="button" data-filter="signs" data-i18n="filter.signs" aria-haspopup="true">Вывески</button>
-            <div class="filter-submenu">
-              <button class="filter filter-sub" type="button" data-filter="address-signs" data-i18n="filter.addressSign">Адресная вывеска</button>
-              <button class="filter filter-sub" type="button" data-filter="signs" data-i18n="filter.decorSigns">Декоративные таблички</button>
-              <button class="filter filter-sub" type="button" data-filter="light-signs" data-i18n="filter.lightSign">Вывеска с подсветкой</button>
-            </div>
-          </div>
-          <div class="filter-group">
-            <button class="filter filter-parent" type="button" data-filter="giftsets" data-i18n="filter.giftsets" aria-haspopup="true">Предметы сервировки и подарки</button>
-            <div class="filter-submenu">
-              <button class="filter filter-sub" type="button" data-filter="giftsets" data-i18n="filter.giftSetsSub">Подарочные наборы</button>
-              <button class="filter filter-sub" type="button" data-filter="boxes" data-i18n="filter.boxes">Шкатулки</button>
-              <button class="filter filter-sub" type="button" data-filter="glasses" data-i18n="filter.glasses">Стаканы</button>
-              <button class="filter filter-sub" type="button" data-filter="thermos-flasks" data-i18n="filter.thermosFlasks">Термосы и фляги</button>
-              <button class="filter filter-sub" type="button" data-filter="napkin-holders" data-i18n="filter.napkinHolders">Салфетницы</button>
-            </div>
-          </div>
-          <button class="filter" type="button" data-filter="keychains" data-i18n="filter.keychains">Брелоки, брошки</button>
-          <button class="filter" type="button" data-filter="magnets" data-i18n="filter.magnets">Магниты</button>
-          <button class="filter" type="button" data-filter="epoxy" data-i18n="filter.epoxy">Декор из эпоксидной смолы</button>
-          <button class="filter" type="button" data-filter="nightlights" data-i18n="filter.nightlights">Ночники</button>
-          <div class="filter-group">
-            <button class="filter filter-parent" type="button" data-filter="clocks" data-i18n="filter.clocks" aria-haspopup="true">Часы</button>
-            <div class="filter-submenu">
-              <button class="filter filter-sub" type="button" data-filter="clock-metal" data-i18n="filter.clockMetal">Металл</button>
-              <button class="filter filter-sub" type="button" data-filter="clock-acrylic" data-i18n="filter.clockAcrylic">Акрил</button>
-              <button class="filter filter-sub" type="button" data-filter="clock-epoxy" data-i18n="filter.clockEpoxy">Эпоксидная смола</button>
-            </div>
-          </div>
-          <button class="filter" type="button" data-filter="awards" data-i18n="filter.awards">Призы</button>
-        </div>
+        <h2 class="gallery-title" data-i18n="homeGallery.title">Свежее&nbsp;из<br>мастерской.</h2>
+        <p class="section-subtitle" data-i18n="homeGallery.subtitle">Восемь актуальных работ PetDecor. Полная коллекция — в галерее.</p>
       </div>
       <div class="product-grid" data-products-source="data.json"></div>
-      <p class="gallery-empty" data-i18n="search.empty" hidden>Ничего не найдено. Попробуйте другое слово или раздел.</p>
+      <a class="gallery-all-link" href="gallery.html" data-i18n="homeGallery.allLink">Смотреть все изделия →</a>
     </section>
 
     <section class="sets" id="sets">
@@ -284,27 +239,8 @@
           </select>
         </label>
         <label>
-          <span data-i18n="form.budget">Бюджет</span>
-          <select name="budget">
-            <option data-i18n="form.budgetLow">До 500 грн</option>
-            <option data-i18n="form.budgetMiddle">500–1500 грн</option>
-            <option data-i18n="form.budgetHigh">1500–3000 грн</option>
-            <option data-i18n="form.budgetPremium">От 3000 грн</option>
-            <option data-i18n="form.budgetDiscuss">Обсудим</option>
-          </select>
-        </label>
-        <label>
           <span data-i18n="form.wishes">Пожелания</span>
           <textarea name="wishes" rows="4" placeholder="Материал, размер, питомец, место размещения" data-i18n-placeholder="form.wishesPlaceholder"></textarea>
-        </label>
-        <label>
-          <span data-i18n="form.deadline">Срок</span>
-          <select name="deadline">
-            <option data-i18n="form.deadlineFlexible">Не срочно</option>
-            <option data-i18n="form.deadlineSoon">1–2 недели</option>
-            <option data-i18n="form.deadlineMonth">До месяца</option>
-            <option data-i18n="form.deadlineDate">К конкретной дате</option>
-          </select>
         </label>
         <button class="button primary" type="submit" data-i18n="form.submit">Отправить заявку</button>
         <p class="form-note" role="status" aria-live="polite"></p>

@@ -23,15 +23,7 @@ const pickHomeCards = (cardList) => {
   const allCards = Array.from(cardList);
   if (isFullGallery) return allCards;
 
-  const latestCards = allCards.slice(0, 4);
-  const randomPool = allCards.slice(4);
-
-  for (let index = randomPool.length - 1; index > 0; index -= 1) {
-    const swapIndex = Math.floor(Math.random() * (index + 1));
-    [randomPool[index], randomPool[swapIndex]] = [randomPool[swapIndex], randomPool[index]];
-  }
-
-  return [...latestCards, ...randomPool.slice(0, 4)];
+  return allCards.slice(0, 8);
 };
 const visibleHomeCards = pickHomeCards(cards);
 const GALLERY_PAGE_SIZE = 16;
@@ -597,7 +589,7 @@ buildMobileMenu();
 const translations = {
   ru: {
     "nav.home": "Studio",
-    "nav.gallery": "Галерея",
+    "nav.gallery": "Каталог",
     "nav.rooms": "Коллекция",
     "nav.studio": "Мастерская",
     "nav.contacts": "Контакты",
@@ -627,9 +619,12 @@ const translations = {
     "intro.2.text": "панно, кронштейны, шкатулки и подарочные объекты для дома",
     "intro.3.title": "Warm material language",
     "intro.3.text": "дерево, металл, стекло, гравировка и фурнитура под старую латунь",
-    "gallery.eyebrow": "Gallery",
+    "gallery.eyebrow": "Каталог",
     "gallery.title": "Декор,&nbsp;в&nbsp;котором<br>живёт&nbsp;характер.",
     "gallery.subtitle": "Для интерьера, улицы и сувениров",
+    "homeGallery.title": "Свежее&nbsp;из<br>мастерской.",
+    "homeGallery.subtitle": "Восемь актуальных работ PetDecor. Полная коллекция — в галерее.",
+    "homeGallery.allLink": "Смотреть все изделия →",
     "search.label": "Поиск по галерее",
     "search.placeholder": "панно, сталь, поводки, латунь",
     "search.empty": "Ничего не найдено. Попробуйте другое слово или раздел.",
@@ -759,7 +754,7 @@ const translations = {
     "form.budgetHigh": "1500–3000 грн",
     "form.budgetPremium": "От 3000 грн",
     "form.budgetDiscuss": "Обсудим",
-    "form.wishes": "Пожелания",
+    "form.wishes": "Пожелания (необязательно)",
     "form.deadline": "Срок",
     "form.deadlineFlexible": "Не срочно",
     "form.deadlineSoon": "1–2 недели",
@@ -779,7 +774,7 @@ const translations = {
   },
   ua: {
     "nav.home": "Studio",
-    "nav.gallery": "Галерея",
+    "nav.gallery": "Каталог",
     "nav.rooms": "Колекція",
     "nav.studio": "Майстерня",
     "nav.contacts": "Контакти",
@@ -809,9 +804,12 @@ const translations = {
     "intro.2.text": "панно, кронштейни, шкатулки та подарункові об'єкти для дому",
     "intro.3.title": "Warm material language",
     "intro.3.text": "дерево, метал, скло, гравіювання та фурнітура під стару латунь",
-    "gallery.eyebrow": "Gallery",
+    "gallery.eyebrow": "Каталог",
     "gallery.title": "Декор,&nbsp;у&nbsp;якому<br>живе&nbsp;характер.",
     "gallery.subtitle": "Для інтер'єру, вулиці та сувенірів",
+    "homeGallery.title": "Свіже&nbsp;з<br>майстерні.",
+    "homeGallery.subtitle": "Вісім актуальних робіт PetDecor. Повна колекція — у галереї.",
+    "homeGallery.allLink": "Дивитися всі вироби →",
     "search.label": "Пошук у галереї",
     "search.placeholder": "панно, сталь, повідці, латунь",
     "search.empty": "Нічого не знайдено. Спробуйте інше слово або розділ.",
@@ -941,7 +939,7 @@ const translations = {
     "form.budgetHigh": "1500–3000 грн",
     "form.budgetPremium": "Від 3000 грн",
     "form.budgetDiscuss": "Обговоримо",
-    "form.wishes": "Побажання",
+    "form.wishes": "Побажання (необов'язково)",
     "form.deadline": "Термін",
     "form.deadlineFlexible": "Не терміново",
     "form.deadlineSoon": "1–2 тижні",
@@ -961,7 +959,7 @@ const translations = {
   },
   en: {
     "nav.home": "Studio",
-    "nav.gallery": "Gallery",
+    "nav.gallery": "Catalog",
     "nav.rooms": "Collection",
     "nav.studio": "Workshop",
     "nav.contacts": "Contact",
@@ -991,9 +989,12 @@ const translations = {
     "intro.2.text": "wall panels, brackets, boxes, and gift objects for the home",
     "intro.3.title": "Warm material language",
     "intro.3.text": "wood, metal, glass, engraving, and antique brass hardware",
-    "gallery.eyebrow": "Gallery",
+    "gallery.eyebrow": "Catalog",
     "gallery.title": "Decor&nbsp;where<br>character&nbsp;lives.",
     "gallery.subtitle": "For interiors, outdoor spaces, and keepsakes",
+    "homeGallery.title": "Fresh&nbsp;from<br>the&nbsp;workshop.",
+    "homeGallery.subtitle": "Eight current PetDecor pieces. The full collection is in the gallery.",
+    "homeGallery.allLink": "View all pieces →",
     "search.label": "Search gallery",
     "search.placeholder": "panel, steel, leashes, brass",
     "search.empty": "Nothing found. Try another word or category.",
@@ -1123,7 +1124,7 @@ const translations = {
     "form.budgetHigh": "€50–100",
     "form.budgetPremium": "€100 and up",
     "form.budgetDiscuss": "Let's discuss",
-    "form.wishes": "Wishes",
+    "form.wishes": "Wishes (optional)",
     "form.deadline": "Deadline",
     "form.deadlineFlexible": "Flexible",
     "form.deadlineSoon": "1–2 weeks",

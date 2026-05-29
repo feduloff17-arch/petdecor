@@ -105,6 +105,21 @@ a {
   color: var(--amber);
 }
 
+.nav a[href="gallery.html"] {
+  position: relative;
+  padding: 7px 11px;
+  border: 1px solid rgba(216, 170, 98, .28);
+  border-radius: 999px;
+  color: var(--amber);
+  background: rgba(216, 170, 98, .08);
+}
+
+.nav a[href="gallery.html"]:hover,
+.nav a[href="gallery.html"]:focus-visible {
+  color: #070604;
+  background: var(--amber);
+}
+
 .header-action {
   justify-self: end;
   position: relative;
@@ -1018,6 +1033,25 @@ h2 {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
+}
+
+.gallery-all-link {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  margin-top: 30px;
+  color: var(--amber);
+  font-family: var(--font-heading);
+  font-size: clamp(1.18rem, 2.6vw, 2rem);
+  font-weight: 760;
+  text-decoration: none;
+  transition: color .3s ease-out, transform .3s ease-out;
+}
+
+.gallery-all-link:hover,
+.gallery-all-link:focus-visible {
+  color: var(--ink);
+  transform: translateX(4px);
 }
 
 .product-card {
