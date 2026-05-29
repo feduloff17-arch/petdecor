@@ -1,0 +1,125 @@
+﻿<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PetDecor Gallery — галерея авторского декора для дома</title>
+  <meta name="description" content="Галерея PetDecor: handmade декор из дерева, латуни и эпоксидки. Панно, ключницы, кронштейны и подарочные наборы с собаками для интерьера.">
+  <meta property="og:title" content="PetDecor Gallery — галерея авторского декора">
+  <meta property="og:description" content="Панно, кронштейны, ключницы и подарки с собаками. Handmade с душой.">
+  <meta property="og:image" content="https://petdecor1.pages.dev/assets/petdecor-hero-labrador.jpeg">
+  <meta property="og:url" content="https://petdecor1.pages.dev/gallery.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_UA">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&family=Unbounded:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="gallery">
+  <header class="site-header">
+    <a class="brand" href="index.html#top" aria-label="PetDecor">
+      <span class="brand-mark">P</span>
+      <span>PetDecor</span>
+    </a>
+    <nav class="nav" aria-label="Главная навигация">
+      <a href="index.html#top" data-i18n="nav.home">Studio</a>
+      <a href="index.html#sets" data-i18n="nav.rooms">Collection</a>
+      <a href="gallery.html" data-i18n="nav.gallery">Gallery</a>
+      <a href="workshop.html" data-i18n="nav.studio">Workshop</a>
+      <a href="index.html#contact" data-i18n="nav.contacts">Contact</a>
+    </nav>
+    <div class="header-tools">
+      <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="language-switch" aria-label="Language switch">
+        <button class="lang-button" type="button" data-lang="en">EN</button>
+        <button class="lang-button is-active" type="button" data-lang="ru">RU</button>
+        <button class="lang-button" type="button" data-lang="ua">UA</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="section gallery-page-section" id="catalog">
+      <div class="section-heading">
+        <p class="eyebrow" data-i18n="gallery.eyebrow">Gallery</p>
+        <h2 class="gallery-title" data-i18n="gallery.title">Декор,&nbsp;в&nbsp;котором<br>живёт&nbsp;характер.</h2>
+        <p class="section-subtitle" data-i18n="gallery.subtitle">Для интерьера, улицы и сувениров</p>
+      </div>
+      <div class="gallery-search">
+        <label>
+          <span data-i18n="search.label">Поиск по галерее</span>
+          <input type="search" id="gallery-search" data-i18n-placeholder="search.placeholder" placeholder="панно, сталь, поводки, латунь">
+        </label>
+      </div>
+      <div class="filters-wrap" aria-label="Разделы галереи">
+        <div class="filters">
+          <button class="filter is-active" type="button" data-filter="all" data-i18n="filter.all">Все изделия</button>
+          <button class="filter" type="button" data-filter="panels" data-i18n="filter.panels">Панно</button>
+          <button class="filter" type="button" data-filter="brackets" data-i18n="filter.brackets">Кронштейны</button>
+          <button class="filter" type="button" data-filter="hangers" data-i18n="filter.hangers">Вешалки</button>
+          <div class="filter-group">
+            <button class="filter filter-parent" type="button" data-filter="signs" data-i18n="filter.signs" aria-haspopup="true">Вывески</button>
+            <div class="filter-submenu">
+              <button class="filter filter-sub" type="button" data-filter="address-signs" data-i18n="filter.addressSign">Адресная вывеска</button>
+              <button class="filter filter-sub" type="button" data-filter="signs" data-i18n="filter.decorSigns">Декоративные таблички</button>
+              <button class="filter filter-sub" type="button" data-filter="light-signs" data-i18n="filter.lightSign">Вывеска с подсветкой</button>
+            </div>
+          </div>
+          <div class="filter-group">
+            <button class="filter filter-parent" type="button" data-filter="giftsets" data-i18n="filter.giftsets" aria-haspopup="true">Предметы сервировки и подарки</button>
+            <div class="filter-submenu">
+              <button class="filter filter-sub" type="button" data-filter="giftsets" data-i18n="filter.giftSetsSub">Подарочные наборы</button>
+              <button class="filter filter-sub" type="button" data-filter="boxes" data-i18n="filter.boxes">Шкатулки</button>
+              <button class="filter filter-sub" type="button" data-filter="glasses" data-i18n="filter.glasses">Стаканы</button>
+              <button class="filter filter-sub" type="button" data-filter="thermos-flasks" data-i18n="filter.thermosFlasks">Термосы и фляги</button>
+              <button class="filter filter-sub" type="button" data-filter="napkin-holders" data-i18n="filter.napkinHolders">Салфетницы</button>
+            </div>
+          </div>
+          <button class="filter" type="button" data-filter="keychains" data-i18n="filter.keychains">Брелоки, брошки</button>
+          <button class="filter" type="button" data-filter="magnets" data-i18n="filter.magnets">Магниты</button>
+          <button class="filter" type="button" data-filter="epoxy" data-i18n="filter.epoxy">Декор из эпоксидной смолы</button>
+          <button class="filter" type="button" data-filter="nightlights" data-i18n="filter.nightlights">Ночники</button>
+          <div class="filter-group">
+            <button class="filter filter-parent" type="button" data-filter="clocks" data-i18n="filter.clocks" aria-haspopup="true">Часы</button>
+            <div class="filter-submenu">
+              <button class="filter filter-sub" type="button" data-filter="clock-metal" data-i18n="filter.clockMetal">Металл</button>
+              <button class="filter filter-sub" type="button" data-filter="clock-acrylic" data-i18n="filter.clockAcrylic">Акрил</button>
+              <button class="filter filter-sub" type="button" data-filter="clock-epoxy" data-i18n="filter.clockEpoxy">Эпоксидная смола</button>
+            </div>
+          </div>
+          <button class="filter" type="button" data-filter="awards" data-i18n="filter.awards">Призы</button>
+        </div>
+      </div>
+      <div class="product-grid" data-products-source="data.json"></div>
+      <p class="gallery-empty" data-i18n="search.empty" hidden>Ничего не найдено. Попробуйте другое слово или раздел.</p>
+      <nav class="gallery-pagination" aria-label="Страницы галереи" hidden>
+        <button class="gallery-page-button gallery-page-prev" type="button" aria-label="Предыдущая страница">‹</button>
+        <span class="gallery-page-status" aria-live="polite">1 / 1</span>
+        <button class="gallery-page-button gallery-page-next" type="button" aria-label="Следующая страница">›</button>
+      </nav>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>PetDecor Studio</span>
+    <nav class="footer-socials" aria-label="Соцсети">
+      <a href="https://www.facebook.com/media/set/?set=a.6717206975000725&type=3" target="_blank" rel="noopener noreferrer">Facebook</a>
+      <a href="https://www.instagram.com/petdecor_creative_studio/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+      <a href="https://t.me/boost/PetDecor" target="_blank" rel="noopener noreferrer">Telegram</a>
+    </nav>
+    <span>© 2025 PetDecor</span>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+
+

@@ -1,0 +1,360 @@
+﻿<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PetDecor Studio — авторский декор для дома и питомцев</title>
+  <meta name="description" content="Handmade декор из дерева, латуни и эпоксидки. Панно, ключницы, подарочные наборы с собаками. PetDecor — тепло и характер в вашем интерьере.">
+  <meta property="og:title" content="PetDecor Studio — авторский декор для дома">
+  <meta property="og:description" content="Панно, кронштейны, ключницы и подарки с собаками. Handmade с душой.">
+  <meta property="og:image" content="https://petdecor1.pages.dev/assets/petdecor-hero-labrador.jpeg">
+  <meta property="og:url" content="https://petdecor1.pages.dev">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_UA">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&family=Unbounded:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="home">
+  <header class="site-header">
+    <a class="brand" href="index.html#top" aria-label="PetDecor">
+      <span class="brand-mark">P</span>
+      <span>PetDecor</span>
+    </a>
+    <nav class="nav" aria-label="Главная навигация">
+      <a href="index.html#top" data-i18n="nav.home">Studio</a>
+      <a href="#sets" data-i18n="nav.rooms">Collection</a>
+      <a href="gallery.html" data-i18n="nav.gallery">Gallery</a>
+      <a href="workshop.html" data-i18n="nav.studio">Workshop</a>
+      <a href="#contact" data-i18n="nav.contacts">Contact</a>
+    </nav>
+    <div class="header-tools">
+      <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="language-switch" aria-label="Language switch">
+        <button class="lang-button" type="button" data-lang="en">EN</button>
+        <button class="lang-button is-active" type="button" data-lang="ru">RU</button>
+        <button class="lang-button" type="button" data-lang="ua">UA</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-media" aria-hidden="true">
+        <img class="hero-poster" src="assets/petdecor-hero-labrador.jpeg" alt="">
+        <video muted playsinline preload="metadata" class="hero-creature">
+          <source src="assets/hero-cinemagraph.mp4" type="video/mp4">
+        </video>
+        <div class="hero-light-field" aria-hidden="true">
+          <svg class="hero-light-filter" width="0" height="0" focusable="false" aria-hidden="true">
+            <filter id="heroWarmCaustics">
+              <feTurbulence type="fractalNoise" baseFrequency="0.009 0.027" numOctaves="3" seed="7">
+                <animate attributeName="baseFrequency" dur="38s" values="0.009 0.027;0.013 0.021;0.008 0.031;0.009 0.027" repeatCount="indefinite" />
+                <animate attributeName="seed" dur="54s" values="7;11;17;7" repeatCount="indefinite" />
+              </feTurbulence>
+              <feDisplacementMap in="SourceGraphic" scale="42" xChannelSelector="R" yChannelSelector="G">
+                <animate attributeName="scale" dur="44s" values="28;48;36;42;28" repeatCount="indefinite" />
+              </feDisplacementMap>
+              <feGaussianBlur stdDeviation="18" />
+            </filter>
+          </svg>
+          <span class="hero-light-layer hero-light-layer-a"></span>
+          <span class="hero-light-layer hero-light-layer-b"></span>
+          <span class="hero-light-layer hero-light-layer-c"></span>
+        </div>
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="eyebrow" data-i18n="hero.eyebrow">Curated pet interiors</p>
+        <h1 id="hero-title">PetDecor</h1>
+        <p class="hero-copy" data-i18n="hero.copy">PetDecor Studio — это пространство авторского декора, созданного с вниманием к атмосфере, материалам и деталям. Мы превращаем дерево, металл и свет в объекты, которые добавляют характер и тепло вашему пространству.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#catalog" data-i18n="hero.primary">Смотреть галерею</a>
+          <a class="button secondary" href="#studio" data-i18n="hero.secondary">Обсудить проект</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro" aria-label="Преимущества">
+      <div>
+        <strong data-i18n="intro.1.title">Objects, not clutter</strong>
+        <span data-i18n="intro.1.text">скульптурные формы, темные покрытия, чистая геометрия</span>
+      </div>
+      <div>
+        <strong data-i18n="intro.2.title">Made for daily rituals</strong>
+        <span data-i18n="intro.2.text">панно, кронштейны, шкатулки и подарочные объекты для дома</span>
+      </div>
+      <div>
+        <strong data-i18n="intro.3.title">Warm material language</strong>
+        <span data-i18n="intro.3.text">дерево, металл, стекло, гравировка и фурнитура под старую латунь</span>
+      </div>
+    </section>
+
+    <section class="section" id="catalog">
+      <div class="section-heading">
+        <p class="eyebrow" data-i18n="gallery.eyebrow">Gallery</p>
+        <h2 class="gallery-title" data-i18n="gallery.title">Декор,&nbsp;в&nbsp;котором<br>живёт&nbsp;характер.</h2>
+        <p class="section-subtitle" data-i18n="gallery.subtitle">Для интерьера, улицы и сувениров</p>
+      </div>
+      <div class="gallery-search">
+        <label>
+          <span data-i18n="search.label">Поиск по галерее</span>
+          <input type="search" id="gallery-search" data-i18n-placeholder="search.placeholder" placeholder="панно, сталь, поводки, латунь">
+        </label>
+      </div>
+      <div class="filters-wrap" aria-label="Разделы галереи">
+        <div class="filters">
+          <button class="filter is-active" type="button" data-filter="all" data-i18n="filter.all">Все изделия</button>
+          <button class="filter" type="button" data-filter="panels" data-i18n="filter.panels">Панно</button>
+          <button class="filter" type="button" data-filter="brackets" data-i18n="filter.brackets">Кронштейны</button>
+          <button class="filter" type="button" data-filter="hangers" data-i18n="filter.hangers">Вешалки</button>
+          <div class="filter-group">
+            <button class="filter filter-parent" type="button" data-filter="signs" data-i18n="filter.signs" aria-haspopup="true">Вывески</button>
+            <div class="filter-submenu">
+              <button class="filter filter-sub" type="button" data-filter="address-signs" data-i18n="filter.addressSign">Адресная вывеска</button>
+              <button class="filter filter-sub" type="button" data-filter="signs" data-i18n="filter.decorSigns">Декоративные таблички</button>
+              <button class="filter filter-sub" type="button" data-filter="light-signs" data-i18n="filter.lightSign">Вывеска с подсветкой</button>
+            </div>
+          </div>
+          <div class="filter-group">
+            <button class="filter filter-parent" type="button" data-filter="giftsets" data-i18n="filter.giftsets" aria-haspopup="true">Предметы сервировки и подарки</button>
+            <div class="filter-submenu">
+              <button class="filter filter-sub" type="button" data-filter="giftsets" data-i18n="filter.giftSetsSub">Подарочные наборы</button>
+              <button class="filter filter-sub" type="button" data-filter="boxes" data-i18n="filter.boxes">Шкатулки</button>
+              <button class="filter filter-sub" type="button" data-filter="glasses" data-i18n="filter.glasses">Стаканы</button>
+              <button class="filter filter-sub" type="button" data-filter="thermos-flasks" data-i18n="filter.thermosFlasks">Термосы и фляги</button>
+              <button class="filter filter-sub" type="button" data-filter="napkin-holders" data-i18n="filter.napkinHolders">Салфетницы</button>
+            </div>
+          </div>
+          <button class="filter" type="button" data-filter="keychains" data-i18n="filter.keychains">Брелоки, брошки</button>
+          <button class="filter" type="button" data-filter="magnets" data-i18n="filter.magnets">Магниты</button>
+          <button class="filter" type="button" data-filter="epoxy" data-i18n="filter.epoxy">Декор из эпоксидной смолы</button>
+          <button class="filter" type="button" data-filter="nightlights" data-i18n="filter.nightlights">Ночники</button>
+          <div class="filter-group">
+            <button class="filter filter-parent" type="button" data-filter="clocks" data-i18n="filter.clocks" aria-haspopup="true">Часы</button>
+            <div class="filter-submenu">
+              <button class="filter filter-sub" type="button" data-filter="clock-metal" data-i18n="filter.clockMetal">Металл</button>
+              <button class="filter filter-sub" type="button" data-filter="clock-acrylic" data-i18n="filter.clockAcrylic">Акрил</button>
+              <button class="filter filter-sub" type="button" data-filter="clock-epoxy" data-i18n="filter.clockEpoxy">Эпоксидная смола</button>
+            </div>
+          </div>
+          <button class="filter" type="button" data-filter="awards" data-i18n="filter.awards">Призы</button>
+        </div>
+      </div>
+      <div class="product-grid" data-products-source="data.json"></div>
+      <p class="gallery-empty" data-i18n="search.empty" hidden>Ничего не найдено. Попробуйте другое слово или раздел.</p>
+    </section>
+
+    <section class="sets" id="sets">
+      <div class="section-heading">
+        <p class="eyebrow" data-i18n="rooms.eyebrow">Rooms</p>
+        <h2 data-i18n="rooms.title">Галерея как набор интерьерных сценариев</h2>
+      </div>
+      <div class="set-grid">
+        <article>
+          <span>01</span>
+          <h3>Noir Calm</h3>
+          <p data-i18n="rooms.1">Матовый графит, дымчатое стекло и мягкий текстиль без визуального шума.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Signal Warm</h3>
+          <p data-i18n="rooms.2">Черная база с янтарными деталями для теплых вечерних комнат.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Material Story</h3>
+          <p data-i18n="rooms.3">Дерево, латунь и гравировка для вещей, которые хочется рассматривать близко.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="reviews" aria-labelledby="reviews-title">
+      <div class="section-heading">
+        <p class="eyebrow" data-i18n="reviews.eyebrow">Messages</p>
+        <h2 id="reviews-title" data-i18n="reviews.title">Отзывы, которые звучат как продолжение интерьера.</h2>
+        <p class="section-subtitle" data-i18n="reviews.subtitle">Живые сообщения от клиентов после получения заказов.</p>
+      </div>
+      <div class="message-shots" aria-label="Стилизованные скриншоты отзывов">
+        <article class="message-card">
+          <div class="message-head">
+            <span>Telegram</span>
+            <small>18:42</small>
+          </div>
+          <div class="message-bubble incoming" data-i18n="reviews.chat1.in">Панно приехало, дерево вживую еще глубже, чем на фото.</div>
+          <div class="message-bubble outgoing" data-i18n="reviews.chat1.out">Очень рада, что оно попало именно в этот угол комнаты.</div>
+        </article>
+        <article class="message-card">
+          <div class="message-head">
+            <span>Instagram</span>
+            <small>21:08</small>
+          </div>
+          <div class="message-bubble incoming" data-i18n="reviews.chat2.in">Ключница выглядит как предмет, который был здесь всегда.</div>
+          <div class="message-bubble outgoing" data-i18n="reviews.chat2.out">Спасибо за точный размер и спокойный черный металл.</div>
+        </article>
+        <article class="message-card">
+          <div class="message-head">
+            <span>Messenger</span>
+            <small>09:17</small>
+          </div>
+          <div class="message-bubble incoming" data-i18n="reviews.chat3.in">Подарочный набор получился очень личным, не похожим на магазинный.</div>
+          <div class="message-bubble outgoing" data-i18n="reviews.chat3.out">Гравировка на стаканах — отдельная любовь.</div>
+        </article>
+        <article class="message-card message-card-screenshot">
+          <div class="message-time">10:47</div>
+          <div class="message-bubble screenshot-bubble screenshot-bubble-wide" data-i18n="reviews.chat4.in">Добрый день. Заказ получила, как всегда все на высшем уровне!) уже готовлю подпись для следующего набора 😊</div>
+          <span class="message-reaction" aria-hidden="true">👍</span>
+          <div class="message-bubble screenshot-bubble screenshot-bubble-short" data-i18n="reviews.chat4.mid">Благодарю 😭</div>
+          <div class="screenshot-row">
+            <span class="message-avatar" aria-hidden="true"></span>
+            <div class="message-bubble screenshot-bubble screenshot-bubble-wide" data-i18n="reviews.chat4.out">Буду вручать завтра после обеда, прошу вас до этого времени не выставлять фото)</div>
+          </div>
+        </article>
+        <article class="message-card message-card-messenger">
+          <a class="review-product-link" href="gallery.html?filter=awards" aria-label="Посмотреть панно с хаски">
+            <img src="assets/husky-slate-award-interior.jpeg" alt="Панно с хаски PetDecor">
+            <span>
+              <strong data-i18n="reviews.husky.product">Панно с хаски</strong>
+              <small data-i18n="reviews.husky.category">Husky Slate Award</small>
+            </span>
+          </a>
+          <div class="messenger-outgoing" data-i18n="reviews.chat5.out">Как нашему эксперту изделия понравились?</div>
+          <div class="messenger-thread">
+            <span class="messenger-avatar" aria-hidden="true"></span>
+            <div>
+              <div class="messenger-incoming messenger-short" data-i18n="reviews.chat5.in1">Даа</div>
+              <div class="messenger-incoming" data-i18n="reviews.chat5.in2">И не только ей, все просто в восторге</div>
+              <span class="messenger-heart" aria-hidden="true">❤</span>
+              <div class="messenger-incoming" data-i18n="reviews.chat5.in3">И за подстаканники отдельное спасибо</div>
+              <span class="messenger-heart messenger-heart-second" aria-hidden="true">❤</span>
+            </div>
+          </div>
+        </article>
+      </div>
+      <div class="review-quotes">
+        <blockquote>
+          <p data-i18n="reviews.quote1">«Вещь не просто красивая — она сразу добавила комнате характер».</p>
+          <cite data-i18n="reviews.author1">Клиент PetDecor</cite>
+        </blockquote>
+        <blockquote>
+          <p data-i18n="reviews.quote2">«Понравилось, что декор получился тёплым, но без лишней декоративности».</p>
+          <cite data-i18n="reviews.author2">Заказ для дома</cite>
+        </blockquote>
+        <blockquote>
+          <p data-i18n="reviews.quote3">«Сразу видно ручную работу: металл, дерево и детали выглядят очень цельно».</p>
+          <cite data-i18n="reviews.author3">Индивидуальный проект</cite>
+        </blockquote>
+        <blockquote>
+          <p data-i18n="reviews.quote4">«Заказ получила, как всегда все на высшем уровне. Уже готовлю подпись для следующего набора».</p>
+          <cite data-i18n="reviews.author4">Подарочный набор</cite>
+        </blockquote>
+        <blockquote>
+          <p data-i18n="reviews.quote5">«И не только ей, все просто в восторге. И за подстаканники отдельное спасибо».</p>
+          <cite data-i18n="reviews.author5">Панно с хаски</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <section class="studio" id="studio">
+      <div>
+        <p class="eyebrow" data-i18n="studio.eyebrow">Styling desk</p>
+        <h2 data-i18n="studio.title">Соберем private edit под комнату, привычки питомца и ваш визуальный код.</h2>
+      </div>
+      <form class="contact-form" id="contact" aria-label="Форма заказа">
+        <label>
+          <span data-i18n="form.name">Имя</span>
+          <input type="text" name="name" autocomplete="name" placeholder="Анна" data-i18n-placeholder="form.namePlaceholder" required>
+        </label>
+        <label>
+          <span data-i18n="form.contact">Как связаться</span>
+          <input type="text" name="contact" autocomplete="tel" placeholder="Телефон или Telegram" data-i18n-placeholder="form.contactPlaceholder" required>
+        </label>
+        <label>
+          <span data-i18n="form.requestType">Тип запроса</span>
+          <select name="requestType">
+            <option data-i18n="form.ready">Готовое изделие</option>
+            <option data-i18n="form.custom">Под заказ</option>
+            <option data-i18n="form.gift">Подарок</option>
+          </select>
+        </label>
+        <label>
+          <span data-i18n="form.budget">Бюджет</span>
+          <select name="budget">
+            <option data-i18n="form.budgetLow">До 500 грн</option>
+            <option data-i18n="form.budgetMiddle">500–1500 грн</option>
+            <option data-i18n="form.budgetHigh">1500–3000 грн</option>
+            <option data-i18n="form.budgetPremium">От 3000 грн</option>
+            <option data-i18n="form.budgetDiscuss">Обсудим</option>
+          </select>
+        </label>
+        <label>
+          <span data-i18n="form.wishes">Пожелания</span>
+          <textarea name="wishes" rows="4" placeholder="Материал, размер, питомец, место размещения" data-i18n-placeholder="form.wishesPlaceholder"></textarea>
+        </label>
+        <label>
+          <span data-i18n="form.deadline">Срок</span>
+          <select name="deadline">
+            <option data-i18n="form.deadlineFlexible">Не срочно</option>
+            <option data-i18n="form.deadlineSoon">1–2 недели</option>
+            <option data-i18n="form.deadlineMonth">До месяца</option>
+            <option data-i18n="form.deadlineDate">К конкретной дате</option>
+          </select>
+        </label>
+        <button class="button primary" type="submit" data-i18n="form.submit">Отправить заявку</button>
+        <p class="form-note" role="status" aria-live="polite"></p>
+        <div class="social-panel" aria-label="Социальные сети">
+          <span data-i18n="social.title">Соцсети</span>
+          <div class="social-links">
+            <a class="social-link" href="https://www.facebook.com/media/set/?set=a.6717206975000725&type=3" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M14 8.2h2.1V4.7c-.4-.1-1.7-.2-3.2-.2-3.1 0-5.2 1.9-5.2 5.4v3H4.5v3.9h3.2v7h4v-7h3.3l.5-3.9h-3.8v-2.6c0-1.1.3-1.9 2.3-1.9Z"/>
+              </svg>
+            </a>
+            <a class="social-link" href="https://www.instagram.com/petdecor_creative_studio/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="4.5" y="4.5" width="15" height="15" rx="4.2"/>
+                <circle cx="12" cy="12" r="3.4"/>
+                <circle cx="16.7" cy="7.3" r="1"/>
+              </svg>
+            </a>
+            <a class="social-link" href="#" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M14.2 4.5v9.6a4.7 4.7 0 1 1-4.7-4.7c.4 0 .8.1 1.2.2v3.5a1.7 1.7 0 1 0 1.7 1.7V4.5Z"/>
+                <path d="M14.2 4.5c.5 2.5 2 4.2 4.6 4.7v3.4c-1.8-.1-3.3-.8-4.6-1.9Z"/>
+              </svg>
+            </a>
+            <a class="social-link" href="https://t.me/boost/PetDecor" target="_blank" rel="noopener noreferrer" aria-label="Telegram">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M21 4.8 3.8 11.4c-1.1.4-1.1 1.1-.2 1.4l4.4 1.4 1.7 5.2c.2.7.6.9 1.1.4l2.5-2.4 4.5 3.3c.8.4 1.3.2 1.5-.8L22 5.8c.2-1-.4-1.4-1-.9Z"/>
+                <path d="m8.3 14 9.8-6.2-7.6 7.1-.3 3.1Z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>PetDecor Studio</span>
+    <nav class="footer-socials" aria-label="Соцсети">
+      <a href="https://www.facebook.com/media/set/?set=a.6717206975000725&type=3" target="_blank" rel="noopener noreferrer">Facebook</a>
+      <a href="https://www.instagram.com/petdecor_creative_studio/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+      <a href="https://t.me/boost/PetDecor" target="_blank" rel="noopener noreferrer">Telegram</a>
+    </nav>
+    <span>© 2025 PetDecor</span>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+
+

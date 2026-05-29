@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PetDecor Admin</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&family=Unbounded:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="admin-page">
+  <header class="site-header">
+    <a class="brand" href="index.html#top" aria-label="PetDecor">
+      <span class="brand-mark">P</span>
+      <span>PetDecor</span>
+    </a>
+    <nav class="nav" aria-label="Admin navigation">
+      <a href="index.html#top">Studio</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="workshop.html">Workshop</a>
+    </nav>
+  </header>
+
+  <main class="admin-shell">
+    <section class="admin-intro">
+      <p class="eyebrow">Admin</p>
+      <h1>Карточки продуктов</h1>
+      <p>Добавляй изделие, тексты и фото. Последнее загруженное фото станет главным на карточке и последним в карусели.</p>
+    </section>
+
+    <section class="admin-layout">
+      <form class="contact-form admin-form" id="admin-product-form">
+        <input type="hidden" name="id">
+
+        <label>
+          <span>Название</span>
+          <input type="text" name="title" placeholder="Labrador Wall Art" required>
+        </label>
+
+        <label>
+          <span>Главная категория</span>
+          <select name="category" required>
+            <option value="panels">Панно</option>
+            <option value="brackets">Кронштейны</option>
+            <option value="hangers">Вешалки</option>
+            <option value="address-signs">Адресная вывеска</option>
+            <option value="signs">Декоративные таблички</option>
+            <option value="light-signs">Вывеска с подсветкой</option>
+            <option value="giftsets">Подарочные наборы</option>
+            <option value="boxes">Шкатулки</option>
+            <option value="glasses">Стаканы</option>
+            <option value="thermos-flasks">Термосы и фляги</option>
+            <option value="napkin-holders">Салфетницы</option>
+            <option value="keychains">Брелоки, брошки</option>
+            <option value="magnets">Магниты</option>
+            <option value="epoxy">Декор из эпоксидной смолы</option>
+            <option value="nightlights">Ночники</option>
+            <option value="clocks">Часы</option>
+            <option value="clock-metal">Часы: металл</option>
+            <option value="clock-acrylic">Часы: акрил</option>
+            <option value="clock-epoxy">Часы: эпоксидная смола</option>
+            <option value="awards">Призы</option>
+          </select>
+        </label>
+
+        <label>
+          <span>Дополнительные категории</span>
+          <input type="text" name="categories" placeholder="boxes, glasses">
+        </label>
+
+        <div class="admin-columns">
+          <label>
+            <span>Тип RU</span>
+            <input type="text" name="typeRu" placeholder="Wall panel">
+          </label>
+          <label>
+            <span>Тип UA</span>
+            <input type="text" name="typeUa" placeholder="Wall panel">
+          </label>
+          <label>
+            <span>Тип EN</span>
+            <input type="text" name="typeEn" placeholder="Wall panel">
+          </label>
+        </div>
+
+        <label>
+          <span>Описание RU</span>
+          <textarea name="descRu" rows="4" required></textarea>
+        </label>
+        <label>
+          <span>Описание UA</span>
+          <textarea name="descUa" rows="4"></textarea>
+        </label>
+        <label>
+          <span>Описание EN</span>
+          <textarea name="descEn" rows="4"></textarea>
+        </label>
+
+        <label>
+          <span>Фото изделия</span>
+          <input type="file" name="images" accept="image/*" multiple>
+        </label>
+
+        <div class="admin-actions">
+          <button class="button primary" type="submit">Сохранить карточку</button>
+          <button class="button secondary" type="button" id="admin-reset">Очистить форму</button>
+        </div>
+        <p class="form-note" id="admin-note" role="status" aria-live="polite"></p>
+      </form>
+
+      <aside class="admin-side">
+        <div class="admin-panel">
+          <h2>Добавленные карточки</h2>
+          <div class="admin-list" id="admin-list"></div>
+        </div>
+
+        <div class="admin-panel">
+          <h2>Перенос данных</h2>
+          <div class="admin-actions">
+            <button class="button secondary" type="button" id="admin-export">Экспорт JSON</button>
+            <label class="button secondary admin-import">
+              Импорт JSON
+              <input type="file" id="admin-import" accept="application/json">
+            </label>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>

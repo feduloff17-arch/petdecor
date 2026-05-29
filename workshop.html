@@ -1,0 +1,179 @@
+﻿<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PetDecor Workshop — о мастерской</title>
+  <meta name="description" content="PetDecor Workshop — авторская мастерская декора из дерева, металла, латуни и эпоксидной смолы. Индивидуальные изделия для дома и питомцев.">
+  <meta property="og:title" content="PetDecor Workshop — о мастерской">
+  <meta property="og:description" content="Как создаются панно, ключницы, кронштейны и подарочные изделия PetDecor.">
+  <meta property="og:image" content="https://petdecor1.pages.dev/assets/petdecor-hero-labrador.jpeg">
+  <meta property="og:url" content="https://petdecor1.pages.dev/workshop.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_UA">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800;900&family=Unbounded:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body data-page="workshop">
+  <header class="site-header">
+    <a class="brand" href="index.html#top" aria-label="PetDecor">
+      <span class="brand-mark">P</span>
+      <span>PetDecor</span>
+    </a>
+    <nav class="nav" aria-label="Главная навигация">
+      <a href="index.html#top" data-i18n="nav.home">Studio</a>
+      <a href="index.html#sets" data-i18n="nav.rooms">Collection</a>
+      <a href="gallery.html" data-i18n="nav.gallery">Gallery</a>
+      <a href="workshop.html" data-i18n="nav.studio">Workshop</a>
+      <a href="index.html#contact" data-i18n="nav.contacts">Contact</a>
+    </nav>
+    <div class="header-tools">
+      <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="language-switch" aria-label="Language switch">
+        <button class="lang-button" type="button" data-lang="en">EN</button>
+        <button class="lang-button is-active" type="button" data-lang="ru">RU</button>
+        <button class="lang-button" type="button" data-lang="ua">UA</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="workshop-main" id="top">
+    <section class="hero workshop-hero" aria-labelledby="workshop-title">
+      <div class="hero-media" aria-hidden="true">
+        <img class="hero-poster" src="assets/petdecor-hero-labrador.jpeg" alt="">
+        <video muted playsinline preload="metadata" class="hero-creature">
+          <source src="assets/hero-cinemagraph.mp4" type="video/mp4">
+        </video>
+        <div class="hero-light-field" aria-hidden="true">
+          <svg class="hero-light-filter" width="0" height="0" focusable="false" aria-hidden="true">
+            <filter id="heroWarmCaustics">
+              <feTurbulence type="fractalNoise" baseFrequency="0.009 0.027" numOctaves="3" seed="7">
+                <animate attributeName="baseFrequency" dur="38s" values="0.009 0.027;0.013 0.021;0.008 0.031;0.009 0.027" repeatCount="indefinite" />
+                <animate attributeName="seed" dur="54s" values="7;11;17;7" repeatCount="indefinite" />
+              </feTurbulence>
+              <feDisplacementMap in="SourceGraphic" scale="42" xChannelSelector="R" yChannelSelector="G">
+                <animate attributeName="scale" dur="44s" values="28;48;36;42;28" repeatCount="indefinite" />
+              </feDisplacementMap>
+              <feGaussianBlur stdDeviation="18" />
+            </filter>
+          </svg>
+          <span class="hero-light-layer hero-light-layer-a"></span>
+          <span class="hero-light-layer hero-light-layer-b"></span>
+          <span class="hero-light-layer hero-light-layer-c"></span>
+        </div>
+      </div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <p class="eyebrow" data-i18n="workshop.eyebrow">Workshop</p>
+        <h1 id="workshop-title">PetDecor Studio</h1>
+        <p class="hero-copy" data-i18n="workshop.heroCopy">PetDecor Studio — мастерская из Николаева, Украина, где идеи превращаются в реальные объекты.</p>
+      </div>
+    </section>
+
+    <section class="workshop-story" aria-label="PetDecor Studio">
+      <div>
+        <p class="eyebrow">PetDecor Studio</p>
+        <h2 data-i18n="workshop.storyTitle">Мастерская, где идея проходит путь от эскиза до готового объекта.</h2>
+      </div>
+      <div class="workshop-story-text">
+        <p data-i18n="workshop.story1">PetDecor Studio — мастерская из Николаева, Украина, где идеи превращаются в реальные объекты.</p>
+        <p data-i18n="workshop.story2">Мы сами придумываем, проектируем и создаем изделия — от первых эскизов до финальной сборки. Работаем с металлом, деревом, эпоксидной смолой, сланцем, подсветкой и декоративными материалами.</p>
+        <p data-i18n="workshop.story3">Вручную льем смолу, работаем со сваркой и обработкой материалов, создаем нестандартные конструкции и постоянно экспериментируем с новыми технологиями, формами и фактурами.</p>
+        <p data-i18n="workshop.story4">Для реализации проектов используем как собственное производство, так и высокотехнологичное оборудование проверенных подрядчиков. На стороне изготавливаются только отдельные детали — сама идея, конструкция, дизайн и финальный результат полностью создаются внутри мастерской.</p>
+        <p data-i18n="workshop.story5">Мы любим сложные задачи и с интересом погружаемся в новые проекты. Чем необычнее идея — тем интереснее работа.</p>
+        <p class="workshop-location" data-i18n="workshop.location">Mykolaiv, Ukraine<br>PetDecor Studio</p>
+      </div>
+    </section>
+
+    <section class="workshop-grid" aria-label="О мастерской">
+      <article>
+        <span>01</span>
+        <h2 data-i18n="workshop.materialsTitle">Материалы</h2>
+        <p data-i18n="workshop.materialsText">Дерево, латунь, нержавеющая сталь, фанера, стекло и эпоксидная смола. Мы подбираем фактуры так, чтобы предмет выглядел спокойно, дорого и жил в интерьере без визуального шума.</p>
+      </article>
+      <article>
+        <span>02</span>
+        <h2 data-i18n="workshop.approachTitle">Подход</h2>
+        <p data-i18n="workshop.approachText">Изделие начинается с силуэта и сценария: где оно будет висеть, что должно хранить, какой питомец или порода станет главным мотивом. Затем идет подбор материала, гравировка, резка, сборка и финиш.</p>
+      </article>
+      <article>
+        <span>03</span>
+        <h2 data-i18n="workshop.customTitle">Индивидуальность</h2>
+        <p data-i18n="workshop.customText">Можно адаптировать композицию под питомник, дом, подарок или конкретное животное: породу, кличку, название, адрес, размер, оттенок дерева и тип металла.</p>
+      </article>
+    </section>
+
+    <section class="studio workshop-contact" id="contact">
+      <div>
+        <p class="eyebrow" data-i18n="studio.eyebrow">Styling desk</p>
+        <h2 data-i18n="studio.title">Соберем private edit под комнату, привычки питомца и ваш визуальный код.</h2>
+      </div>
+      <form class="contact-form" aria-label="Форма заказа">
+        <label>
+          <span data-i18n="form.name">Имя</span>
+          <input type="text" name="name" autocomplete="name" placeholder="Анна" data-i18n-placeholder="form.namePlaceholder" required>
+        </label>
+        <label>
+          <span data-i18n="form.contact">Как связаться</span>
+          <input type="text" name="contact" autocomplete="tel" placeholder="Телефон или Telegram" data-i18n-placeholder="form.contactPlaceholder" required>
+        </label>
+        <label>
+          <span data-i18n="form.requestType">Тип запроса</span>
+          <select name="requestType">
+            <option data-i18n="form.ready">Готовое изделие</option>
+            <option data-i18n="form.custom">Под заказ</option>
+            <option data-i18n="form.gift">Подарок</option>
+          </select>
+        </label>
+        <label>
+          <span data-i18n="form.budget">Бюджет</span>
+          <select name="budget">
+            <option data-i18n="form.budgetLow">До 500 грн</option>
+            <option data-i18n="form.budgetMiddle">500–1500 грн</option>
+            <option data-i18n="form.budgetHigh">1500–3000 грн</option>
+            <option data-i18n="form.budgetPremium">От 3000 грн</option>
+            <option data-i18n="form.budgetDiscuss">Обсудим</option>
+          </select>
+        </label>
+        <label>
+          <span data-i18n="form.wishes">Пожелания</span>
+          <textarea name="wishes" rows="4" placeholder="Материал, размер, питомец, место размещения" data-i18n-placeholder="form.wishesPlaceholder"></textarea>
+        </label>
+        <label>
+          <span data-i18n="form.deadline">Срок</span>
+          <select name="deadline">
+            <option data-i18n="form.deadlineFlexible">Не срочно</option>
+            <option data-i18n="form.deadlineSoon">1–2 недели</option>
+            <option data-i18n="form.deadlineMonth">До месяца</option>
+            <option data-i18n="form.deadlineDate">К конкретной дате</option>
+          </select>
+        </label>
+        <button class="button primary" type="submit" data-i18n="form.submit">Отправить заявку</button>
+        <p class="form-note" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>PetDecor Studio</span>
+    <nav class="footer-socials" aria-label="Соцсети">
+      <a href="https://www.facebook.com/media/set/?set=a.6717206975000725&type=3" target="_blank" rel="noopener noreferrer">Facebook</a>
+      <a href="https://www.instagram.com/petdecor_creative_studio/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">Instagram</a>
+      <a href="https://t.me/boost/PetDecor" target="_blank" rel="noopener noreferrer">Telegram</a>
+    </nav>
+    <span>© 2025 PetDecor</span>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+
+
