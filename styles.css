@@ -2763,13 +2763,50 @@ body[data-page="gallery"] .section {
   }
 
   h1 {
-    font-size: clamp(3rem, 16vw, 4rem);
-    line-height: .9;
+    font-size: 3rem;
+    line-height: .94;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
   }
 
   h2 {
-    font-size: clamp(1.85rem, 11vw, 3.15rem);
-    line-height: 1.1;
+    max-width: 100%;
+    font-size: 2.12rem;
+    line-height: 1.08;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
+  }
+
+  .gallery-title {
+    font-size: 2.32rem;
+    line-height: 1.02;
+  }
+
+  .section-heading {
+    max-width: 100%;
+  }
+
+  .section-subtitle {
+    max-width: 100%;
+    margin-top: 14px;
+    font-size: .98rem;
+  }
+
+  .studio h2,
+  .workshop-contact h2 {
+    font-size: 1.9rem;
+    line-height: 1.13;
+  }
+
+  .reviews h2,
+  .workshop-story h2 {
+    font-size: 1.95rem;
+    line-height: 1.12;
+  }
+
+  .workshop-grid h2 {
+    font-size: 1.45rem;
+    line-height: 1.15;
   }
 
   .hero-copy {
@@ -3108,6 +3145,31 @@ body[data-page="gallery"] .section {
   }
 }
 
+@media (max-width: 430px) {
+  h1 {
+    font-size: 2.55rem;
+    line-height: .96;
+  }
+
+  h2,
+  .reviews h2,
+  .workshop-story h2,
+  .studio h2,
+  .workshop-contact h2 {
+    font-size: 1.62rem;
+    line-height: 1.14;
+  }
+
+  .gallery-title {
+    font-size: 2rem;
+    line-height: 1.05;
+  }
+
+  .workshop-grid h2 {
+    font-size: 1.28rem;
+  }
+}
+
 @media (max-width: 380px) {
   .brand-mark {
     width: 32px;
@@ -3123,6 +3185,26 @@ body[data-page="gallery"] .section {
   }
 
   h1 {
-    font-size: clamp(2.55rem, 18vw, 4rem);
+    font-size: 2.28rem;
+    line-height: .98;
+  }
+
+  h2,
+  .reviews h2,
+  .workshop-story h2,
+  .studio h2,
+  .workshop-contact h2 {
+    font-size: 1.42rem;
+    line-height: 1.16;
+  }
+
+  .gallery-title {
+    font-size: 1.82rem;
+    line-height: 1.06;
+  }
+
+  .section-subtitle,
+  .hero-copy {
+    font-size: .92rem;
   }
 }
