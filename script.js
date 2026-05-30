@@ -512,6 +512,15 @@ const writeWishlist = (items) => {
 
 const updateWishlistButtons = () => {
   const wishlist = new Set(readWishlist());
+  const count = wishlist.size;
+
+  const trigger = document.querySelector(".wishlist-trigger");
+  const badge = document.querySelector(".wishlist-badge");
+  if (trigger) {
+    trigger.classList.toggle("has-items", count > 0);
+    trigger.hidden = false;
+  }
+  if (badge) badge.textContent = count > 0 ? String(count) : "";
 
   document.querySelectorAll(".product-card").forEach((card) => {
     const productId = card.dataset.productId || card.id;
@@ -525,7 +534,202 @@ const updateWishlistButtons = () => {
     button.setAttribute("aria-label", isActive ? "Убрать из вишлиста" : "Добавить в вишлист");
     button.textContent = isActive ? "♥" : "♡";
   });
+
+  if (document.body.classList.contains("wishlist-panel-open")) {
+    renderWishlistItems();
+  }
 };
+
+const TELEGRAM_USERNAME = "PetDecor";
+
+const getAllWishlistProducts = () => [...catalogProducts, ...readAdminProducts()];
+
+const getProductByWishlistId = (id) => getAllWishlistProducts().find((product) => (
+  (product.id || product.galleryId?.replace(/-gallery$/, "")) === id
+));
+
+const buildTelegramMessage = (wishlistIds, lang) => {
+  const lines = wishlistIds.map((id) => {
+    const product = getProductByWishlistId(id);
+    if (!product) return null;
+
+    const title = product.title || id;
+    const price = Number(product.priceEur || product.price || 0);
+    const priceStr = price ? ` (от €${Math.round(price)})` : "";
+    return `- ${title}${priceStr}`;
+  }).filter(Boolean);
+
+  if (!lines.length) return "";
+
+  const greetings = {
+    ru: "Здравствуйте! Меня интересуют изделия PetDecor:",
+    ua: "Доброго дня! Мене цікавлять вироби PetDecor:",
+    en: "Hello! I'm interested in these PetDecor items:",
+  };
+
+  return `${greetings[lang] || greetings.ru}\n${lines.join("\n")}`;
+};
+
+const renderWishlistItems = () => {
+  const list = document.querySelector(".wishlist-panel-list");
+  if (!list) return;
+
+  const ids = readWishlist();
+
+  if (!ids.length) {
+    const emptyLabels = {
+      ru: "Вы ещё ничего не отложили. Нажмите ♡ на карточке изделия.",
+      ua: "Ви ще нічого не відклали. Натисніть ♡ на картці виробу.",
+      en: "Nothing saved yet. Tap ♡ on any product card.",
+    };
+    list.innerHTML = `<p class="wishlist-empty">${emptyLabels[currentLang] || emptyLabels.ru}</p>`;
+    return;
+  }
+
+  list.innerHTML = ids.map((id) => {
+    const product = getProductByWishlistId(id);
+    if (!product) return "";
+
+    const title = escapeHtml(product.title || id);
+    const price = Number(product.priceEur || product.price || 0);
+    const priceStr = price ? formatPrice(price, currentLang) : "";
+    const thumb = product.preview?.src || product.images?.[0]?.src || "";
+    const imgTag = thumb
+      ? `<img class="wishlist-item-thumb" src="${escapeHtml(thumb)}" alt="${title}" loading="lazy">`
+      : '<div class="wishlist-item-thumb"></div>';
+
+    return `
+      <div class="wishlist-item" data-wishlist-id="${escapeHtml(id)}">
+        ${imgTag}
+        <div>
+          <p class="wishlist-item-name">${title}</p>
+          ${priceStr ? `<p class="wishlist-item-price">${escapeHtml(priceStr)}</p>` : ""}
+        </div>
+        <button class="wishlist-item-remove" type="button" data-remove-wishlist="${escapeHtml(id)}" aria-label="Убрать из избранного">×</button>
+      </div>`;
+  }).join("");
+};
+
+const openWishlistPanel = () => {
+  const panel = document.querySelector(".wishlist-panel");
+  if (!panel) return;
+
+  renderWishlistItems();
+  panel.hidden = false;
+  requestAnimationFrame(() => document.body.classList.add("wishlist-panel-open"));
+};
+
+const closeWishlistPanel = () => {
+  document.body.classList.remove("wishlist-panel-open");
+  window.setTimeout(() => {
+    const panel = document.querySelector(".wishlist-panel");
+    if (panel && !document.body.classList.contains("wishlist-panel-open")) {
+      panel.hidden = true;
+    }
+  }, 300);
+};
+
+const buildWishlistPanel = () => {
+  const panel = document.createElement("div");
+  panel.className = "wishlist-panel";
+  panel.hidden = true;
+  panel.setAttribute("role", "dialog");
+  panel.setAttribute("aria-modal", "true");
+  panel.setAttribute("aria-label", "Избранное");
+
+  const sendLabels = {
+    ru: "Отправить подборку в Telegram",
+    ua: "Надіслати добірку в Telegram",
+    en: "Send selection to Telegram",
+  };
+  const clearLabels = {
+    ru: "Очистить избранное",
+    ua: "Очистити обране",
+    en: "Clear wishlist",
+  };
+  const titleLabels = {
+    ru: "Избранное",
+    ua: "Обране",
+    en: "Wishlist",
+  };
+
+  panel.innerHTML = `
+    <button class="wishlist-panel-backdrop" type="button" aria-label="Закрыть"></button>
+    <div class="wishlist-panel-sheet">
+      <div class="wishlist-panel-head">
+        <h3 class="wishlist-panel-title">${titleLabels[currentLang] || titleLabels.ru}</h3>
+        <button class="wishlist-panel-close" type="button" aria-label="Закрыть">×</button>
+      </div>
+      <div class="wishlist-panel-list"></div>
+      <div class="wishlist-panel-footer">
+        <button class="wishlist-send-btn" type="button">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M21 4.8 3.8 11.4c-1.1.4-1.1 1.1-.2 1.4l4.4 1.4 1.7 5.2c.2.7.6.9 1.1.4l2.5-2.4 4.5 3.3c.8.4 1.3.2 1.5-.8L22 5.8c.2-1-.4-1.4-1-.9Z"/>
+          </svg>
+          ${sendLabels[currentLang] || sendLabels.ru}
+        </button>
+        <button class="wishlist-clear-btn" type="button">${clearLabels[currentLang] || clearLabels.ru}</button>
+      </div>
+    </div>`;
+
+  document.body.append(panel);
+
+  panel.querySelector(".wishlist-panel-backdrop").addEventListener("click", closeWishlistPanel);
+  panel.querySelector(".wishlist-panel-close").addEventListener("click", closeWishlistPanel);
+
+  let touchStartY = 0;
+  let touchDeltaY = 0;
+  const sheet = panel.querySelector(".wishlist-panel-sheet");
+  sheet.addEventListener("touchstart", (event) => {
+    touchStartY = event.touches[0].clientY;
+    touchDeltaY = 0;
+  }, { passive: true });
+  sheet.addEventListener("touchmove", (event) => {
+    touchDeltaY = event.touches[0].clientY - touchStartY;
+  }, { passive: true });
+  sheet.addEventListener("touchend", () => {
+    if (touchDeltaY > 80) closeWishlistPanel();
+    touchDeltaY = 0;
+  });
+
+  panel.querySelector(".wishlist-panel-list").addEventListener("click", (event) => {
+    const button = event.target.closest("[data-remove-wishlist]");
+    if (!button) return;
+
+    const wishlist = new Set(readWishlist());
+    wishlist.delete(button.dataset.removeWishlist);
+    writeWishlist(Array.from(wishlist));
+    updateWishlistButtons();
+    applyGalleryFilters();
+  });
+
+  panel.querySelector(".wishlist-send-btn").addEventListener("click", () => {
+    const ids = readWishlist();
+    if (!ids.length) return;
+
+    const message = buildTelegramMessage(ids, currentLang);
+    const url = `https://t.me/${TELEGRAM_USERNAME}?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank", "noopener");
+  });
+
+  panel.querySelector(".wishlist-clear-btn").addEventListener("click", () => {
+    writeWishlist([]);
+    updateWishlistButtons();
+    applyGalleryFilters();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && document.body.classList.contains("wishlist-panel-open")) {
+      closeWishlistPanel();
+    }
+  });
+};
+
+buildWishlistPanel();
+
+document.addEventListener("click", (event) => {
+  if (event.target.closest(".wishlist-trigger")) openWishlistPanel();
+});
 
 const showShareToast = (messageKey) => {
   shareToast.textContent = translations[currentLang]?.[messageKey] || translations.ru[messageKey] || "";
