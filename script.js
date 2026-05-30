@@ -356,6 +356,7 @@ function renderCatalogProducts(products) {
         <div>
           <p class="eyebrow"${typeKey}>${type}</p>
           <h2 id="${galleryId}-title">${title}</h2>
+          ${price ? `<p class="product-price modal-price" data-price-eur="${price}"></p>` : ""}
         </div>
         <div class="modal-actions">
           <button class="share-button share-button-modal" type="button" data-share-product="${escapeHtml(id)}" data-share-title="${title}" aria-label="Поделиться изделием">↗</button>
@@ -452,6 +453,7 @@ function renderAdminProducts(products) {
         <div>
           <p class="eyebrow" data-admin-field="type">${type}</p>
           <h2 id="${galleryId}-title" data-admin-field="title">${title}</h2>
+          ${price ? `<p class="product-price modal-price" data-price-eur="${price}"></p>` : ""}
         </div>
         <div class="modal-actions">
           <button class="share-button share-button-modal" type="button" data-share-product="${escapeHtml(id)}" data-share-title="${title}" aria-label="Поделиться изделием">↗</button>
@@ -535,8 +537,7 @@ const showShareToast = (messageKey) => {
 };
 
 const getProductUrl = (productId) => {
-  const url = new URL(window.location.href);
-  url.hash = productId;
+  const url = new URL(`products/${encodeURIComponent(productId)}.html`, window.location.href);
   return url.toString();
 };
 
@@ -1442,6 +1443,9 @@ const setActiveFilterButton = (button) => {
   galleryPage = 1;
   filters.forEach((item) => item.classList.remove("is-active"));
   button.classList.add("is-active");
+  document.querySelectorAll(".filter-sheet .filter").forEach((item) => {
+    item.classList.toggle("is-active", item.dataset.filter === activeFilter);
+  });
 };
 
 const applyInitialGalleryFilterFromUrl = () => {
@@ -1528,6 +1532,12 @@ const setOrderProduct = (productTitle) => {
 };
 
 const openOrderForm = (productTitle) => {
+  if (window.innerWidth < 620) {
+    const text = encodeURIComponent(`Заказать: ${productTitle}`);
+    window.open(`https://t.me/PetDecor?text=${text}`, "_blank", "noopener");
+    return;
+  }
+
   if (!form) {
     const url = new URL("index.html", window.location.href);
     url.hash = "contact";
