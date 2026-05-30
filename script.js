@@ -1042,6 +1042,8 @@ const translations = {
     "acaciaPanel.desc": "Теплая акация, мягкий блеск латуни и прозрачная глубина смолы. Панно без лишнего - просто хорошие материалы рядом. Подходит для гостиной, кабинета или загородного дома, где стены не должны перекрикивать мебель. Акация, латунь, эпоксидная смола. 45 x 14 см.",
     "napkinHolder.type": "Tableware object",
     "napkinHolder.desc": "Стол с такой салфетницей выглядит иначе. Ажурная полированная нержавейка - собака, птицы, камыши - добавляет сервировке характер без лишней декоративности. Практичная и приятная на вид одновременно. Нержавеющая сталь 2 мм.",
+    "clubEspanaNapkinHolder.type": "Салфетница для клуба",
+    "clubEspanaNapkinHolder.desc": "Стол с такой салфетницей говорит о клубе раньше, чем кто-то успел представиться. Силуэт боксера в полный рост, название Club España и круглая рама вырезаны из цельного листа нержавеющей стали. На столе переговоров, банкетном столе или в клубной комнате это выглядит как предмет, задуманный именно для этого места. Выпускается в двух вариантах: шлифованная сталь с холодным сдержанным блеском или порошковая покраска в белом либо выбранном цвете. Делается под заказ с именем клуба или питомника. Нержавеющая сталь 2 мм, лазерная резка.",
     "paperweight.type": "Epoxy decor",
     "paperweight.desc": "В прозрачном бирюзовом объеме - силуэт лабрадора из нержавеющей стали. Пресс-папье из эпоксидной смолы и дерева каповой маслины стоит на столе тихо, но замечается сразу. Хороший подарок для тех, кто проводит много времени за рабочим столом. Эпоксидная смола, каповая маслина, нержавеющая сталь.",
     "roundHuntPanel.type": "Wall panel",
@@ -1238,6 +1240,8 @@ const translations = {
     "acaciaPanel.desc": "Образ: спокійний акцент для вітальні, кабінету або заміського інтер'єру з теплим деревом, металом і прозорою глибиною смоли. Матеріали: акація, латунна композиція і епоксидна смола. Розмір і деталі: панно 45 x 14 см.",
     "napkinHolder.type": "Tableware object",
     "napkinHolder.desc": "Образ: предмет сервірування із собакою, птахами й очеретом, що додає столу характер і акуратний блиск. Матеріали: полірована нержавіюча сталь. Розмір і деталі: серветниця, товщина металу 2 мм.",
+    "clubEspanaNapkinHolder.type": "Серветниця для клубу",
+    "clubEspanaNapkinHolder.desc": "Стіл із такою серветницею говорить про клуб раніше, ніж хтось встиг представитися. Силует боксера на повний зріст, назва Club España і кругла рама вирізані з цільного листа нержавіючої сталі. На столі переговорів, банкетному столі або в клубній кімнаті це виглядає як предмет, задуманий саме для цього місця. Випускається у двох варіантах: шліфована сталь із холодним стриманим блиском або порошкове фарбування в білому чи вибраному кольорі. Виготовляється на замовлення з іменем клубу або розплідника. Нержавіюча сталь 2 мм, лазерне різання.",
     "paperweight.type": "Epoxy decor",
     "paperweight.desc": "Образ: спокійний настільний акцент із силуетом лабрадора, застиглим у прозорому бірюзовому об'ємі. Матеріали: епоксидна смола, дерево капової маслини і нержавіюча сталь. Розмір і деталі: прес-пап'є для столу, кабінету або подарунка.",
     "roundHuntPanel.type": "Wall panel",
@@ -1434,6 +1438,8 @@ const translations = {
     "acaciaPanel.desc": "Image: a calm accent for a living room, study, or countryside interior with warm wood, metal, and clear resin depth. Materials: acacia, brass composition, and epoxy resin. Size and details: 45 x 14 cm wall panel.",
     "napkinHolder.type": "Tableware object",
     "napkinHolder.desc": "Image: a tableware object with a dog, birds, and reeds that adds character and clean shine to the table. Materials: polished stainless steel. Size and details: napkin holder, 2 mm metal thickness.",
+    "clubEspanaNapkinHolder.type": "Club napkin holder",
+    "clubEspanaNapkinHolder.desc": "A table with this napkin holder speaks for the club before anyone introduces themselves. The full-height boxer silhouette, Club España name, and round frame are cut from a single sheet of stainless steel. On a meeting table, banquet table, or in a club room, it feels like an object designed for that exact place. Available in two finishes: brushed stainless steel with a cool restrained shine, or powder coating in white or a selected color. Made to order with the club or kennel name. 2 mm stainless steel, laser cut.",
     "paperweight.type": "Epoxy decor",
     "paperweight.desc": "Image: a calm desk accent with a Labrador silhouette suspended in a transparent turquoise volume. Materials: epoxy resin, olive burl wood, and stainless steel. Size and details: paperweight for a desk, study, or gift.",
     "roundHuntPanel.type": "Wall panel",
@@ -2353,4 +2359,3 @@ updateWishlistButtons();
 setLanguage("ru");
 applyOrderFromUrl();
 applyProductHash();
-

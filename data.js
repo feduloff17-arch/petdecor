@@ -1033,6 +1033,58 @@ window.PETDECOR_PRODUCTS = {
       ]
     },
     {
+      "id": "club-espana-napkin-holder",
+      "galleryId": "club-espana-napkin-holder-gallery",
+      "title": "Club España Boxer Napkin Holder",
+      "categories": [
+        "giftsets",
+        "napkin-holders"
+      ],
+      "typeKey": "clubEspanaNapkinHolder.type",
+      "typeFallback": "Club napkin holder",
+      "descKey": "clubEspanaNapkinHolder.desc",
+      "descFallback": "Стол с такой салфетницей говорит о клубе раньше, чем кто-то успел представиться. Силуэт боксера в полный рост, название Club España и круглая рама вырезаны из цельного листа нержавеющей стали. На столе переговоров, банкетном столе или в клубной комнате это выглядит как предмет, задуманный именно для этого места. Выпускается в двух вариантах: шлифованная сталь с холодным сдержанным блеском или порошковая покраска в белом либо выбранном цвете. Делается под заказ с именем клуба или питомника. Нержавеющая сталь 2 мм, лазерная резка.",
+      "priceEur": 35,
+      "preview": {
+        "ariaLabel": "Салфетница Club España с силуэтом боксера",
+        "src": "assets/club-espana-napkin-holder-table.jpeg",
+        "alt": "Салфетница Club España с силуэтом боксера на сервированном столе",
+        "className": "focus-napkin-holder"
+      },
+      "images": [
+        {
+          "src": "assets/club-espana-napkin-holder-front.jpeg",
+          "alt": "Салфетница Club España из нержавеющей стали на белом фоне",
+          "className": "fit-photo no-scale",
+          "fit": true
+        },
+        {
+          "src": "assets/club-espana-napkin-holder-table.jpeg",
+          "alt": "Салфетница Club España с белыми салфетками на сервированном столе",
+          "className": "",
+          "fit": false
+        },
+        {
+          "src": "assets/club-espana-napkin-holder-angle.jpeg",
+          "alt": "Салфетница Club España с салфетками в ракурсе на столе",
+          "className": "",
+          "fit": false
+        },
+        {
+          "src": "assets/club-espana-napkin-holder-studio.jpeg",
+          "alt": "Салфетница Club España с белыми салфетками на студийном фоне",
+          "className": "fit-photo no-scale",
+          "fit": true
+        },
+        {
+          "src": "assets/club-espana-napkin-holder-white-red.jpeg",
+          "alt": "Белая салфетница Club España с красными салфетками на столе",
+          "className": "",
+          "fit": false
+        }
+      ]
+    },
+    {
       "id": "paperweight",
       "galleryId": "paperweight-gallery",
       "title": "Labrador Paperweight",
