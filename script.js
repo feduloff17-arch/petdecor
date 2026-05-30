@@ -2325,6 +2325,8 @@ document.addEventListener("keydown", (event) => {
 });
 
 const applyProductHash = () => {
+  if (!isFullGallery) return;
+
   const productId = decodeURIComponent(window.location.hash.replace("#", ""));
   if (!productId || productId === "contact") return;
 
@@ -2333,7 +2335,10 @@ const applyProductHash = () => {
   const gallery = galleryId ? document.getElementById(galleryId) : null;
 
   if (gallery) {
-    window.setTimeout(() => openGallery(gallery), 180);
+    window.setTimeout(() => {
+      openGallery(gallery);
+      window.history.replaceState({}, "", `${window.location.pathname}${window.location.search}`);
+    }, 180);
   }
 };
 
