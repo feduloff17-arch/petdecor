@@ -57,6 +57,17 @@
           <input type="search" id="gallery-search" data-i18n-placeholder="search.placeholder" placeholder="панно, сталь, поводки, латунь">
         </label>
       </div>
+      <div class="gallery-sort">
+        <label>
+          <span data-i18n="sort.label">Сортировка</span>
+          <select id="gallery-sort">
+            <option value="new" data-i18n="sort.new">Новые</option>
+            <option value="popular" data-i18n="sort.popular">Популярные</option>
+            <option value="price-asc" data-i18n="sort.priceAsc">По цене ↑</option>
+            <option value="price-desc" data-i18n="sort.priceDesc">По цене ↓</option>
+          </select>
+        </label>
+      </div>
       <div class="filters-wrap" aria-label="Разделы галереи">
         <div class="filters">
           <button class="filter is-active" type="button" data-filter="all" data-i18n="filter.all">Все изделия</button>
@@ -94,6 +105,7 @@
             </div>
           </div>
           <button class="filter" type="button" data-filter="awards" data-i18n="filter.awards">Призы</button>
+          <button class="filter-more-button" type="button" data-filter-more data-i18n="filter.more">Ещё</button>
         </div>
       </div>
       <div class="product-grid" data-products-source="data.json"></div>

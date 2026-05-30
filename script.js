@@ -6,11 +6,14 @@ const adminProducts = readAdminProducts();
 renderAdminProducts(adminProducts);
 const cards = document.querySelectorAll(".product-card");
 const searchInput = document.querySelector("#gallery-search");
+const sortInput = document.querySelector("#gallery-sort");
 const galleryEmpty = document.querySelector(".gallery-empty");
 const galleryPagination = document.querySelector(".gallery-pagination");
 const galleryPagePrev = document.querySelector(".gallery-page-prev");
 const galleryPageNext = document.querySelector(".gallery-page-next");
 const galleryPageStatus = document.querySelector(".gallery-page-status");
+const filterMoreButton = document.querySelector("[data-filter-more]");
+const shareToast = document.createElement("div");
 const form = document.querySelector(".contact-form");
 const note = document.querySelector(".form-note");
 const galleryTriggers = document.querySelectorAll(".gallery-trigger");
@@ -29,6 +32,12 @@ const visibleHomeCards = pickHomeCards(cards);
 const GALLERY_PAGE_SIZE = 16;
 const EUR_TO_UAH = 52;
 const LOCAL_DISCOUNT = .8;
+const WISHLIST_KEY = "petdecorWishlist";
+
+shareToast.className = "share-toast";
+shareToast.setAttribute("role", "status");
+shareToast.setAttribute("aria-live", "polite");
+document.body.append(shareToast);
 
 if (!isFullGallery) {
   visibleHomeCards.forEach((card, index) => {
@@ -286,7 +295,7 @@ function renderCatalogProducts(products) {
   document.querySelectorAll(".gallery-modal").forEach((modal) => modal.remove());
   productGrid.innerHTML = "";
 
-  products.forEach((product) => {
+  products.forEach((product, index) => {
     const id = product.id || product.galleryId?.replace(/-gallery$/, "") || `product-${Date.now()}`;
     const galleryId = product.galleryId || `${id}-gallery`;
     const categories = (product.categories || []).filter(Boolean).join(" ");
@@ -297,6 +306,7 @@ function renderCatalogProducts(products) {
     const type = escapeHtml(product.typeFallback || "");
     const desc = escapeHtml(product.descFallback || "");
     const price = Number(product.priceEur || 0);
+    const popularity = Number(product.popularity || 0) || ((product.images || []).length * 10) + (product.categories?.includes("awards") ? 8 : 0) + (product.categories?.includes("panels") ? 5 : 0);
     const focusClass = preview.className ? ` class="${escapeHtml(preview.className)}"` : "";
     const searchText = escapeHtml([
       product.title,
@@ -306,7 +316,11 @@ function renderCatalogProducts(products) {
     const searchKeys = escapeHtml([product.typeKey, product.descKey].filter(Boolean).join(" "));
 
     productGrid.insertAdjacentHTML("beforeend", `
-        <article class="product-card featured-piece" data-product-id="${escapeHtml(id)}" data-category="${escapeHtml(categories)}" data-price-eur="${price}" data-search-text="${searchText}" data-search-keys="${searchKeys}">
+        <article class="product-card featured-piece" id="${escapeHtml(id)}" data-product-id="${escapeHtml(id)}" data-category="${escapeHtml(categories)}" data-price-eur="${price}" data-popularity="${popularity}" data-sort-index="${index}" data-search-text="${searchText}" data-search-keys="${searchKeys}">
+          <div class="product-card-actions" aria-label="Действия с изделием">
+            <button class="wishlist-button" type="button" data-wishlist-product="${escapeHtml(id)}" aria-label="Добавить в вишлист">♡</button>
+            <button class="share-button" type="button" data-share-product="${escapeHtml(id)}" data-share-title="${title}" aria-label="Поделиться изделием">↗</button>
+          </div>
           <div class="piece-preview" aria-label="${escapeHtml(preview.ariaLabel || product.title || "")}">
             <button class="gallery-trigger" type="button" data-gallery="${escapeHtml(galleryId)}" aria-haspopup="dialog" aria-controls="${escapeHtml(galleryId)}" aria-label="Открыть галерею ${title}">
               <img loading="lazy"${focusClass} src="${escapeHtml(preview.src || "")}" alt="${escapeHtml(preview.alt || product.title || "")}">
@@ -315,9 +329,8 @@ function renderCatalogProducts(products) {
           <div class="product-info">
             <span${typeKey}>${type}</span>
             <h3>${title}</h3>
-            <p${descKey}>${desc}</p>
             ${price ? `<p class="product-price" data-price-eur="${price}"></p>` : ""}
-            <button class="order-button" type="button" data-order-product="${title}" data-i18n="order.button">Заказать</button>
+            <p${descKey}>${desc}</p>
           </div>
         </article>`);
 
@@ -345,6 +358,8 @@ function renderCatalogProducts(products) {
           <h2 id="${galleryId}-title">${title}</h2>
         </div>
         <div class="modal-actions">
+          <button class="share-button share-button-modal" type="button" data-share-product="${escapeHtml(id)}" data-share-title="${title}" aria-label="Поделиться изделием">↗</button>
+          <button class="wishlist-button wishlist-button-modal" type="button" data-wishlist-product="${escapeHtml(id)}" aria-label="Добавить в вишлист">♡</button>
           <button class="order-button order-button-modal" type="button" data-order-product="${title}" data-i18n="order.button">Заказать</button>
           <button class="modal-close" type="button" aria-label="Закрыть">×</button>
         </div>
@@ -373,7 +388,7 @@ function renderAdminProducts(products) {
 
   const scriptTag = document.querySelector('script[src="script.js"]');
 
-  products.forEach((product) => {
+  products.forEach((product, index) => {
     const id = product.id || `admin-${Date.now()}`;
     const categories = Array.from(new Set([product.category, ...(product.categories || [])].filter(Boolean))).join(" ");
     const images = (product.images || []).filter(Boolean);
@@ -382,6 +397,7 @@ function renderAdminProducts(products) {
     const type = escapeHtml(textForLang(product.type, "ru"));
     const desc = escapeHtml(textForLang(product.desc, "ru"));
     const price = Number(product.priceEur || product.price || 0);
+    const popularity = Number(product.popularity || 0) || images.length * 10;
     const galleryId = `${id}-gallery`;
     const searchText = escapeHtml([
       textForLang(product.title, "ru"),
@@ -396,7 +412,11 @@ function renderAdminProducts(products) {
     ].filter(Boolean).join(" "));
 
     productGrid.insertAdjacentHTML("afterbegin", `
-        <article class="product-card featured-piece" data-category="${escapeHtml(categories)}" data-admin-product="${escapeHtml(id)}" data-search-text="${searchText}">
+        <article class="product-card featured-piece" id="${escapeHtml(id)}" data-product-id="${escapeHtml(id)}" data-category="${escapeHtml(categories)}" data-admin-product="${escapeHtml(id)}" data-price-eur="${price}" data-popularity="${popularity}" data-sort-index="${index}" data-search-text="${searchText}">
+          <div class="product-card-actions" aria-label="Действия с изделием">
+            <button class="wishlist-button" type="button" data-wishlist-product="${escapeHtml(id)}" aria-label="Добавить в вишлист">♡</button>
+            <button class="share-button" type="button" data-share-product="${escapeHtml(id)}" data-share-title="${title}" aria-label="Поделиться изделием">↗</button>
+          </div>
           <div class="piece-preview" aria-label="${title}">
             <button class="gallery-trigger" type="button" data-gallery="${escapeHtml(galleryId)}" aria-haspopup="dialog" aria-controls="${escapeHtml(galleryId)}" aria-label="Открыть галерею ${title}">
               <img src="${mainImage}" alt="${title}">
@@ -405,9 +425,8 @@ function renderAdminProducts(products) {
           <div class="product-info">
             <span data-admin-field="type">${type}</span>
             <h3 data-admin-field="title">${title}</h3>
-            <p data-admin-field="desc">${desc}</p>
             ${price ? `<p class="product-price" data-price-eur="${price}"></p>` : ""}
-            <button class="order-button" type="button" data-order-product="${title}" data-i18n="order.button">Заказать</button>
+            <p data-admin-field="desc">${desc}</p>
           </div>
         </article>`);
 
@@ -435,6 +454,8 @@ function renderAdminProducts(products) {
           <h2 id="${galleryId}-title" data-admin-field="title">${title}</h2>
         </div>
         <div class="modal-actions">
+          <button class="share-button share-button-modal" type="button" data-share-product="${escapeHtml(id)}" data-share-title="${title}" aria-label="Поделиться изделием">↗</button>
+          <button class="wishlist-button wishlist-button-modal" type="button" data-wishlist-product="${escapeHtml(id)}" aria-label="Добавить в вишлист">♡</button>
           <button class="order-button order-button-modal" type="button" data-order-product="${title}" data-i18n="order.button">Заказать</button>
           <button class="modal-close" type="button" aria-label="Закрыть">×</button>
         </div>
@@ -472,6 +493,68 @@ const formatAwardSetPrice = (lang) => {
 
 const getCardPriceEur = (card) => {
   return Number(card.dataset.priceEur || 0);
+};
+
+const readWishlist = () => {
+  try {
+    const value = JSON.parse(localStorage.getItem(WISHLIST_KEY) || "[]");
+    return Array.isArray(value) ? value : [];
+  } catch {
+    return [];
+  }
+};
+
+const writeWishlist = (items) => {
+  localStorage.setItem(WISHLIST_KEY, JSON.stringify(Array.from(new Set(items))));
+};
+
+const updateWishlistButtons = () => {
+  const wishlist = new Set(readWishlist());
+
+  document.querySelectorAll(".product-card").forEach((card) => {
+    const productId = card.dataset.productId || card.id;
+    card.classList.toggle("is-wishlisted", wishlist.has(productId));
+  });
+
+  document.querySelectorAll("[data-wishlist-product]").forEach((button) => {
+    const isActive = wishlist.has(button.dataset.wishlistProduct);
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+    button.setAttribute("aria-label", isActive ? "Убрать из вишлиста" : "Добавить в вишлист");
+    button.textContent = isActive ? "♥" : "♡";
+  });
+};
+
+const showShareToast = (messageKey) => {
+  shareToast.textContent = translations[currentLang]?.[messageKey] || translations.ru[messageKey] || "";
+  shareToast.classList.add("is-visible");
+  window.clearTimeout(showShareToast.timer);
+  showShareToast.timer = window.setTimeout(() => {
+    shareToast.classList.remove("is-visible");
+  }, 2200);
+};
+
+const getProductUrl = (productId) => {
+  const url = new URL(window.location.href);
+  url.hash = productId;
+  return url.toString();
+};
+
+const getSortedCards = (cardList) => {
+  const mode = sortInput?.value || "new";
+  const wishlist = new Set(readWishlist());
+
+  return [...cardList].sort((a, b) => {
+    if (mode === "price-asc") return getCardPriceEur(a) - getCardPriceEur(b);
+    if (mode === "price-desc") return getCardPriceEur(b) - getCardPriceEur(a);
+    if (mode === "popular") {
+      const wishDiff = Number(wishlist.has(b.dataset.productId)) - Number(wishlist.has(a.dataset.productId));
+      if (wishDiff) return wishDiff;
+      return Number(b.dataset.popularity || 0) - Number(a.dataset.popularity || 0);
+    }
+
+    return Number(a.dataset.sortIndex || 0) - Number(b.dataset.sortIndex || 0);
+  });
 };
 
 const ensureProductPrices = () => {
@@ -540,13 +623,29 @@ const buildMobileMenu = () => {
         <button class="mobile-menu-close" type="button" aria-label="Закрыть меню">×</button>
       </div>
       <nav class="mobile-menu-nav" aria-label="Мобильная навигация"></nav>
+      <div class="mobile-menu-lang" aria-label="Language switch"></div>
     </div>`;
 
   const mobileNav = overlay.querySelector(".mobile-menu-nav");
+  const mobileLang = overlay.querySelector(".mobile-menu-lang");
+  const panel = overlay.querySelector(".mobile-menu-panel");
+  let menuTouchStartX = 0;
+  let menuTouchDeltaX = 0;
+  let isMenuSwiping = false;
+
   siteNav.querySelectorAll("a").forEach((link) => {
     const clone = link.cloneNode(true);
     clone.addEventListener("click", () => closeMobileMenu());
     mobileNav.append(clone);
+  });
+
+  langButtons.forEach((button) => {
+    const clone = button.cloneNode(true);
+    clone.addEventListener("click", () => {
+      setLanguage(clone.dataset.lang);
+      closeMobileMenu();
+    });
+    mobileLang.append(clone);
   });
 
   document.body.append(overlay);
@@ -576,6 +675,38 @@ const buildMobileMenu = () => {
 
   overlay.querySelector(".mobile-menu-backdrop").addEventListener("click", closeMobileMenu);
   overlay.querySelector(".mobile-menu-close").addEventListener("click", closeMobileMenu);
+
+  panel?.addEventListener("touchstart", (event) => {
+    const touch = event.touches[0];
+    menuTouchStartX = touch.clientX;
+    menuTouchDeltaX = 0;
+    isMenuSwiping = true;
+    panel.style.transition = "none";
+  }, { passive: true });
+
+  panel?.addEventListener("touchmove", (event) => {
+    if (!isMenuSwiping) return;
+    const touch = event.touches[0];
+    menuTouchDeltaX = Math.max(0, touch.clientX - menuTouchStartX);
+    panel.style.transform = `translateX(${menuTouchDeltaX}px)`;
+  }, { passive: true });
+
+  panel?.addEventListener("touchend", () => {
+    if (!isMenuSwiping) return;
+    isMenuSwiping = false;
+    panel.style.transition = "";
+    panel.style.transform = "";
+
+    if (menuTouchDeltaX > 80) closeMobileMenu();
+    menuTouchDeltaX = 0;
+  });
+
+  panel?.addEventListener("touchcancel", () => {
+    isMenuSwiping = false;
+    panel.style.transition = "";
+    panel.style.transform = "";
+    menuTouchDeltaX = 0;
+  });
 
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && document.body.classList.contains("menu-open")) {
@@ -628,6 +759,13 @@ const translations = {
     "search.label": "Поиск по галерее",
     "search.placeholder": "панно, сталь, поводки, латунь",
     "search.empty": "Ничего не найдено. Попробуйте другое слово или раздел.",
+    "sort.label": "Сортировка",
+    "sort.new": "Новые",
+    "sort.popular": "Популярные",
+    "sort.priceAsc": "По цене ↑",
+    "sort.priceDesc": "По цене ↓",
+    "share.copied": "Ссылка на изделие скопирована",
+    "share.error": "Не удалось скопировать ссылку",
     "filter.all": "Все изделия",
     "filter.panels": "Панно",
     "filter.brackets": "Кронштейны",
@@ -651,6 +789,8 @@ const translations = {
     "filter.clockAcrylic": "Акрил",
     "filter.clockEpoxy": "Эпоксидная смола",
     "filter.awards": "Призы",
+    "filter.more": "Ещё",
+    "filter.sheetTitle": "Все категории",
     "slateKennel.type": "Decorative plaque",
     "slateKennel.desc": "Авторская интерьерная интерпретация логотипа питомника: глубокая фактура черного сланца и холодный блеск шлифованной стали превращают фирменный знак в спокойный премиальный акцент для стены, полки или зоны наград. Натуральный черный сланец 30 × 20 см, шлифованная нержавеющая сталь, настенное или настольное размещение.",
     "silverLabradorClock.type": "Clock",
@@ -813,6 +953,13 @@ const translations = {
     "search.label": "Пошук у галереї",
     "search.placeholder": "панно, сталь, повідці, латунь",
     "search.empty": "Нічого не знайдено. Спробуйте інше слово або розділ.",
+    "sort.label": "Сортування",
+    "sort.new": "Нові",
+    "sort.popular": "Популярні",
+    "sort.priceAsc": "За ціною ↑",
+    "sort.priceDesc": "За ціною ↓",
+    "share.copied": "Посилання на виріб скопійовано",
+    "share.error": "Не вдалося скопіювати посилання",
     "filter.all": "Усі вироби",
     "filter.panels": "Панно",
     "filter.brackets": "Кронштейни",
@@ -836,6 +983,8 @@ const translations = {
     "filter.clockAcrylic": "Акрил",
     "filter.clockEpoxy": "Епоксидна смола",
     "filter.awards": "Призи",
+    "filter.more": "Ще",
+    "filter.sheetTitle": "Усі категорії",
     "slateKennel.type": "Decorative plaque",
     "slateKennel.desc": "Авторська інтер'єрна інтерпретація логотипа розплідника: глибока фактура чорного сланцю та холодний блиск шліфованої сталі перетворюють фірмовий знак на спокійний преміальний акцент для стіни, полиці або зони нагород. Натуральний чорний сланець 30 × 20 см, шліфована нержавіюча сталь, настінне або настільне розміщення.",
     "silverLabradorClock.type": "Clock",
@@ -998,6 +1147,13 @@ const translations = {
     "search.label": "Search gallery",
     "search.placeholder": "panel, steel, leashes, brass",
     "search.empty": "Nothing found. Try another word or category.",
+    "sort.label": "Sort",
+    "sort.new": "Newest",
+    "sort.popular": "Popular",
+    "sort.priceAsc": "Price ↑",
+    "sort.priceDesc": "Price ↓",
+    "share.copied": "Product link copied",
+    "share.error": "Could not copy the link",
     "filter.all": "All objects",
     "filter.panels": "Wall panels",
     "filter.brackets": "Brackets",
@@ -1021,6 +1177,8 @@ const translations = {
     "filter.clockAcrylic": "Acrylic",
     "filter.clockEpoxy": "Epoxy resin",
     "filter.awards": "Awards",
+    "filter.more": "More",
+    "filter.sheetTitle": "All categories",
     "slateKennel.type": "Decorative plaque",
     "slateKennel.desc": "A custom interior interpretation of a kennel logo: the deep texture of black slate and the cool sheen of brushed steel turn the mark into a calm premium accent for a wall, shelf, or awards area. Natural black slate, 30 × 20 cm, brushed stainless steel, wall-mounted or tabletop placement.",
     "silverLabradorClock.type": "Clock",
@@ -1159,7 +1317,7 @@ const setLanguage = (lang) => {
     element.placeholder = translations[lang][key] || translations.ru[key] || element.placeholder;
   });
 
-  langButtons.forEach((button) => {
+  document.querySelectorAll(".lang-button").forEach((button) => {
     button.classList.toggle("is-active", button.dataset.lang === lang);
   });
 
@@ -1418,14 +1576,20 @@ const applyGalleryFilters = () => {
     if (matches) visibleCards.push(card);
   });
 
-  const visibleCount = visibleCards.length;
+  const sortedCards = getSortedCards(visibleCards);
+
+  sortedCards.forEach((card, index) => {
+    card.style.order = index;
+  });
+
+  const visibleCount = sortedCards.length;
   updateGalleryPagination(visibleCount);
 
   if (isFullGallery) {
     const pageStart = (galleryPage - 1) * GALLERY_PAGE_SIZE;
     const pageEnd = pageStart + GALLERY_PAGE_SIZE;
 
-    visibleCards.forEach((card, index) => {
+    sortedCards.forEach((card, index) => {
       const onCurrentPage = index >= pageStart && index < pageEnd;
       card.classList.toggle("is-hidden", !onCurrentPage);
     });
@@ -1440,28 +1604,91 @@ langButtons.forEach((button) => {
   button.addEventListener("click", () => setLanguage(button.dataset.lang));
 });
 
+const handleFilterClick = (button) => {
+  if (!isFullGallery) {
+    window.location.href = getGalleryFilterUrl(button.dataset.filter);
+    return;
+  }
+
+  const matchingMainButton = Array.from(filters).find((item) => item.dataset.filter === button.dataset.filter);
+  setActiveFilterButton(matchingMainButton || button);
+
+  const url = new URL(window.location.href);
+  if (activeFilter === "all") {
+    url.searchParams.delete("filter");
+  } else {
+    url.searchParams.set("filter", activeFilter);
+  }
+  window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
+
+  applyGalleryFilters();
+};
+
 filters.forEach((button) => {
-  button.addEventListener("click", () => {
-    if (!isFullGallery) {
-      window.location.href = getGalleryFilterUrl(button.dataset.filter);
-      return;
-    }
-
-    setActiveFilterButton(button);
-
-    const url = new URL(window.location.href);
-    if (activeFilter === "all") {
-      url.searchParams.delete("filter");
-    } else {
-      url.searchParams.set("filter", activeFilter);
-    }
-    window.history.replaceState({}, "", `${url.pathname}${url.search}${url.hash}`);
-
-    applyGalleryFilters();
-  });
+  button.addEventListener("click", () => handleFilterClick(button));
 });
 
+const buildFilterSheet = () => {
+  if (!filterMoreButton) return;
+
+  const sheet = document.createElement("div");
+  sheet.className = "filter-sheet";
+  sheet.hidden = true;
+  sheet.innerHTML = `
+    <button class="filter-sheet-backdrop" type="button" aria-label="Закрыть категории"></button>
+    <section class="filter-sheet-panel" role="dialog" aria-modal="true" aria-labelledby="filter-sheet-title">
+      <div class="filter-sheet-head">
+        <h3 id="filter-sheet-title" data-i18n="filter.sheetTitle">Все категории</h3>
+        <button class="filter-sheet-close" type="button" aria-label="Закрыть">×</button>
+      </div>
+      <div class="filter-sheet-list"></div>
+    </section>`;
+
+  const list = sheet.querySelector(".filter-sheet-list");
+  filters.forEach((button) => {
+    const clone = button.cloneNode(true);
+    clone.classList.add("filter-sheet-item");
+    clone.classList.remove("is-active");
+    clone.addEventListener("click", () => {
+      handleFilterClick(clone);
+      closeFilterSheet();
+    });
+    list.append(clone);
+  });
+
+  const openFilterSheet = () => {
+    sheet.hidden = false;
+    requestAnimationFrame(() => document.body.classList.add("filter-sheet-open"));
+  };
+
+  function closeFilterSheet() {
+    document.body.classList.remove("filter-sheet-open");
+    window.setTimeout(() => {
+      if (!document.body.classList.contains("filter-sheet-open")) sheet.hidden = true;
+    }, 260);
+  }
+
+  filterMoreButton.addEventListener("click", openFilterSheet);
+  sheet.querySelector(".filter-sheet-backdrop").addEventListener("click", closeFilterSheet);
+  sheet.querySelector(".filter-sheet-close").addEventListener("click", closeFilterSheet);
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && document.body.classList.contains("filter-sheet-open")) {
+      closeFilterSheet();
+    }
+  });
+
+  document.body.append(sheet);
+};
+
+buildFilterSheet();
+
 searchInput?.addEventListener("input", () => {
+  galleryPage = 1;
+  applyGalleryFilters();
+});
+
+sortInput?.addEventListener("change", () => {
   galleryPage = 1;
   applyGalleryFilters();
 });
@@ -1484,6 +1711,50 @@ document.addEventListener("click", (event) => {
   if (!button) return;
 
   openOrderForm(button.dataset.orderProduct || "");
+});
+
+document.addEventListener("click", async (event) => {
+  const button = event.target.closest("[data-share-product]");
+  if (!button) return;
+
+  const productId = button.dataset.shareProduct;
+  const title = button.dataset.shareTitle || document.getElementById(productId)?.querySelector("h3")?.textContent || "PetDecor";
+  const url = getProductUrl(productId);
+
+  try {
+    if (navigator.share) {
+      await navigator.share({ title, text: title, url });
+      return;
+    }
+
+    await navigator.clipboard.writeText(url);
+    showShareToast("share.copied");
+  } catch {
+    try {
+      await navigator.clipboard.writeText(url);
+      showShareToast("share.copied");
+    } catch {
+      showShareToast("share.error");
+    }
+  }
+});
+
+document.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-wishlist-product]");
+  if (!button) return;
+
+  const productId = button.dataset.wishlistProduct;
+  const wishlist = new Set(readWishlist());
+
+  if (wishlist.has(productId)) {
+    wishlist.delete(productId);
+  } else {
+    wishlist.add(productId);
+  }
+
+  writeWishlist(Array.from(wishlist));
+  updateWishlistButtons();
+  applyGalleryFilters();
 });
 
 form?.addEventListener("submit", async (event) => {
@@ -1716,9 +1987,12 @@ galleryTriggers.forEach((trigger) => {
 
 galleryModals.forEach((gallery) => {
   const viewport = gallery.querySelector(".carousel-viewport");
+  const panel = gallery.querySelector(".modal-panel");
   let swipeStartX = 0;
   let swipeStartY = 0;
   let swipeDeltaX = 0;
+  let panelTouchStartY = 0;
+  let panelTouchDeltaY = 0;
   let isSwiping = false;
   let didSwipe = false;
 
@@ -1789,6 +2063,20 @@ galleryModals.forEach((gallery) => {
     swipeDeltaX = 0;
   });
 
+  panel?.addEventListener("touchstart", (event) => {
+    panelTouchStartY = event.touches[0].clientY;
+    panelTouchDeltaY = 0;
+  }, { passive: true });
+
+  panel?.addEventListener("touchmove", (event) => {
+    panelTouchDeltaY = event.touches[0].clientY - panelTouchStartY;
+  }, { passive: true });
+
+  panel?.addEventListener("touchend", () => {
+    if (panelTouchDeltaY > 80) closeGallery(gallery);
+    panelTouchDeltaY = 0;
+  });
+
   viewport?.addEventListener("click", (event) => {
     if (didSwipe) {
       didSwipe = false;
@@ -1822,8 +2110,23 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+const applyProductHash = () => {
+  const productId = decodeURIComponent(window.location.hash.replace("#", ""));
+  if (!productId || productId === "contact") return;
+
+  const card = document.getElementById(productId);
+  const galleryId = card?.querySelector(".gallery-trigger")?.dataset.gallery;
+  const gallery = galleryId ? document.getElementById(galleryId) : null;
+
+  if (gallery) {
+    window.setTimeout(() => openGallery(gallery), 180);
+  }
+};
+
 applyInitialGalleryFilterFromUrl();
+updateWishlistButtons();
 setLanguage("ru");
 applyOrderFromUrl();
+applyProductHash();
 
 
